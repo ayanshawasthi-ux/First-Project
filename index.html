@@ -1,58 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>User Dashboard</title>
-  <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayansh's A-to-Z Amazon Store</title>
+    <style>
+        :root {
+            --amazon-navy: #131921;
+            --amazon-gold: #FF9900;
+            --off-white: #f6f6f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--off-white);
+            color: #111;
+        }
+
+        /* Hero Pitch Section */
+        header {
+            background-color: var(--amazon-navy);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--amazon-gold);
+        }
+
+        .hero-title { font-size: 3rem; margin: 0; letter-spacing: 1px; }
+        .hero-tagline { font-size: 1.3rem; color: var(--amazon-gold); margin-top: 10px; font-weight: 300; }
+
+        .container {
+            max-width: 1000px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* The "Flat" Pitch Card */
+        .main-pitch-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .main-pitch-card h2 { font-size: 2.2rem; color: #cc0c39; margin-bottom: 20px; }
+        .main-pitch-card p { font-size: 1.2rem; line-height: 1.8; color: #444; margin-bottom: 30px; }
+
+        /* A-to-Z Categories List */
+        .category-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .tag {
+            background: #e7e9ec;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--amazon-navy);
+        }
+
+        /* THE MASTER LINK BUTTON */
+        .master-affiliate-btn {
+            display: inline-block;
+            background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+            border: 1px solid #a88734;
+            color: #111;
+            padding: 25px 60px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .master-affiliate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #f0c14b;
+        }
+
+        /* Compliance Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .safe-shopping {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Your Dashboard</h1>
-  </header>
 
-  <main>
-    <h2 id="username"></h2>
-    <p>Email: <span id="email"></span></p>
-    <p>Cashback Balance: ₹<span id="cashback"></span></p>
+<header>
+    <h1 class="hero-title">AYANSH'S A-to-Z SELECTIONS</h1>
+    <p class="hero-tagline">Curated Tech, Fashion & Essentials for the B.Tech Lifestyle</p>
+</header>
 
-    <h3>Cashback History</h3>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Store</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody id="history"></tbody>
-    </table>
-  </main>
+<div class="container">
+    <div class="main-pitch-card">
+        <h2>THE ONLY LINK YOU NEED</h2>
+        <p>
+            Why waste time browsing thousands of bad products? Whether you are buying a <strong>High-End Laptop for DSA</strong>, the latest <strong>5G Smartphone</strong>, <strong>Campus Streetwear</strong>, or <strong>Personal Grooming Kits</strong>—I have linked the best versions of everything right here. 
+            <br><br>
+            From A to Z, if a student needs it, you can find it through my official Amazon link below. 
+        </p>
 
-  <script>
-    const userId = "replace_with_real_user_id";
+        <div class="category-list">
+            <span class="tag">Laptops</span>
+            <span class="tag">Phones</span>
+            <span class="tag">Clothes</span>
+            <span class="tag">Beauty</span>
+            <span class="tag">Gym Gear</span>
+            <span class="tag">C++ Books</span>
+        </div>
 
-    fetch(`/user/${userId}`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('username').innerText = data.username;
-        document.getElementById('email').innerText = data.email;
-        document.getElementById('cashback').innerText = data.cashback;
-      });
+        <a href="https://amzn.to/4bTHvHH" target="_blank" class="master-affiliate-btn">
+            BUY EVERYTHING FROM HERE
+        </a>
 
-    fetch(`/history/${userId}`)
-      .then(res => res.json())
-      .then(data => {
-        const table = document.getElementById('history');
-        data.forEach(tx => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${tx.store}</td>
-            <td>₹${tx.amount}</td>
-            <td>${new Date(tx.date).toLocaleDateString()}</td>
-          `;
-          table.appendChild(row);
-        });
-      });
-  </script>
+        <div class="safe-shopping">
+            <span>✓ Official Amazon Associate</span>
+            <span>✓ Safe & Secure</span>
+            <span>✓ Best Prices</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>As an Amazon Associate, I earn from qualifying purchases. This supports my studies and helps keep this guide updated.</p>
+    <p>&copy; 2026 Ayansh Awasthi. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
