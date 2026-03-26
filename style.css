@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+header {
+  background: #222;
+  color: #fff;
+  padding: 20px;
+}
+#deals div {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+}
+a {
+  display: inline-block;
+  margin-top: 10px;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+}
